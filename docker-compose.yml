@@ -1,0 +1,28 @@
+version: '3'
+services:
+  rabbit1:
+    image: rabbitmq:3-management
+    container_name: rabbit1
+    hostname: rabbit1
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=shared_cookie
+    volumes:
+      - $PWD/rabbit1-definitions.json:/etc/rabbitmq/definitions.json:ro
+      - $PWD/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+
+  rabbit2:
+    image: rabbitmq:3-management
+    container_name: rabbit2
+    hostname: rabbit2
+    ports:
+      - 5673:5672
+      - 15673:15672
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=shared_cookie
+    volumes:
+      - $PWD/rabbit2-definitions.json:/etc/rabbitmq/definitions.json:ro
+      - $PWD/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+    command: sh -c 'sleep 10 && rabbitmq-server'
