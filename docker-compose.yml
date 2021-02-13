@@ -2,7 +2,6 @@ version: '3'
 services:
   rabbit1:
     image: rabbitmq:3-management
-    container_name: rabbit1
     hostname: rabbit1
     ports:
       - 5672:5672
@@ -15,7 +14,6 @@ services:
 
   rabbit2:
     image: rabbitmq:3-management
-    container_name: rabbit2
     hostname: rabbit2
     command: sh -c 'sleep 10 && rabbitmq-server'
     ports:

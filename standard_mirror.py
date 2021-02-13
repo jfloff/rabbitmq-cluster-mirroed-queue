@@ -2,7 +2,7 @@
 import pika
 from datetime import datetime
 
-QUEUE = 'ha.queue1'
+QUEUE = 'write-home-timeline'
 creds = pika.PlainCredentials('admin', 'admin')
 message = str(datetime.now())
 
